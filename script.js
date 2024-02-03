@@ -70,12 +70,19 @@ Block.prototype.drawSquare = function (color) {
 };
 
 Block.prototype.drawCircle = function (color) {
-    let centerX = this.col * blockSize + blockSize / 2;
-    let centerY = this.row * blockSize + blockSize / 2;
-    ctx.fillStyle = color;
-    circle(centerX, centerY, blockSize / 2, true);
-  };
+  let centerX = this.col * blockSize + blockSize / 2;
+  let centerY = this.row * blockSize + blockSize / 2;
+  ctx.fillStyle = color;
+  circle(centerX, centerY, blockSize / 2, true);
+};
+
+Block.prototype.equal = function (otherBlock) {
+  return this.col === otherBlock.col && this.row === otherBlock.row;
+};
 
 let sampleBlock = new Block(20, 20);
-//sampleBlock.drawSquare("blue"); 
-sampleBlock.drawCircle("green");
+sampleBlock.drawSquare("blue");
+let appleBlock = new Block(20, 20);
+appleBlock.drawCircle("green");
+
+console.log(sampleBlock.equal(appleBlock));
