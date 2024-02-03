@@ -80,9 +80,25 @@ Block.prototype.equal = function (otherBlock) {
   return this.col === otherBlock.col && this.row === otherBlock.row;
 };
 
-let sampleBlock = new Block(20, 20);
-sampleBlock.drawSquare("blue");
-let appleBlock = new Block(20, 20);
-appleBlock.drawCircle("green");
+let Snake = function () {
+  this.segments = [new Block(7, 5), new Block(6, 5), new Block(5, 5)];
+  this.direction = "right";
+  this.nextDirection = "right";
+};
 
-console.log(sampleBlock.equal(appleBlock));
+Snake.prototype.draw = function () {
+  for (let i = 0; i < this.segments.length; i++) {
+    this.segments[i].drawSquare("blue");
+  }
+};
+
+// let sampleBlock = new Block(20, 20);
+// sampleBlock.drawSquare("blue");
+// let appleBlock = new Block(20, 20);
+// appleBlock.drawCircle("green");
+
+// console.log(sampleBlock.equal(appleBlock));
+
+const snake = new Snake();
+
+snake.draw();
