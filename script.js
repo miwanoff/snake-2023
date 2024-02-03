@@ -169,6 +169,15 @@ addEventListener("keydown", function (event) {
 
 const snake = new Snake();
 
-snake.draw();
-snake.move();
-snake.draw();
+// snake.draw();
+// snake.move();
+// snake.draw();
+
+let intervalId = setInterval(function () {
+    ctx.clearRect(0, 0, width, height);
+    drawScore();
+    snake.move();
+    snake.draw();
+    // apple.draw();
+    drawBorder();
+  }, 100);
