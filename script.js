@@ -69,5 +69,13 @@ Block.prototype.drawSquare = function (color) {
   ctx.fillRect(x, y, blockSize, blockSize);
 };
 
+Block.prototype.drawCircle = function (color) {
+    let centerX = this.col * blockSize + blockSize / 2;
+    let centerY = this.row * blockSize + blockSize / 2;
+    ctx.fillStyle = color;
+    circle(centerX, centerY, blockSize / 2, true);
+  };
+
 let sampleBlock = new Block(20, 20);
-sampleBlock.drawSquare("blue"); 
+//sampleBlock.drawSquare("blue"); 
+sampleBlock.drawCircle("green");
