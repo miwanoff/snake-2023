@@ -12,6 +12,13 @@ let blockSize = 10;
 let widthInBlocks = width / blockSize;
 let heightInBlocks = height / blockSize;
 
+let directions = {
+  37: "left",
+  38: "up",
+  39: "right",
+  40: "down",
+};
+
 // Функция для рисования рамки
 let drawBorder = function () {
   ctx.fillStyle = "Gray";
@@ -133,6 +140,26 @@ Snake.prototype.move = function () {
   //     this.segments.pop();
   //   }
 };
+
+Snake.prototype.setDirection = function (newDirection) {
+  if (this.direction === "up" && newDirection === "down") {
+    return;
+  } else if (this.direction === "right" && newDirection === "left") {
+    return;
+  } else if (this.direction === "down" && newDirection === "up") {
+    return;
+  } else if (this.direction === "left" && newDirection === "right") {
+    return;
+  }
+  this.nextDirection = newDirection;
+};
+
+addEventListener("keydown", function (event) {
+  let newDirection = directions[event.keyCode];
+  if (newDirection !== undefined) {
+    snake.setDirection(newDirection);
+  }
+});
 // let sampleBlock = new Block(20, 20);
 // sampleBlock.drawSquare("blue");
 // let appleBlock = new Block(20, 20);
