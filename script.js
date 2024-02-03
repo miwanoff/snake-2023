@@ -133,13 +133,13 @@ Snake.prototype.move = function () {
     return;
   }
   this.segments.unshift(newHead);
-  this.segments.pop();
-  //   if (newHead.equal(apple.position)) {
-  //     score++;
-  //     apple.move();
-  //   } else {
-  //     this.segments.pop();
-  //   }
+
+  if (newHead.equal(apple.position)) {
+    score++;
+    apple.move();
+  } else {
+    this.segments.pop();
+  }
 };
 
 Snake.prototype.setDirection = function (newDirection) {
@@ -154,6 +154,23 @@ Snake.prototype.setDirection = function (newDirection) {
   }
   this.nextDirection = newDirection;
 };
+
+let Apple = function () {
+  this.position = new Block(20, 20);
+};
+
+Apple.prototype.draw = function () {
+  this.position.drawCircle("LimeGreen");
+};
+
+Apple.prototype.move = function () {
+  let randomCol = Math.floor(Math.random() * (widthInBlocks - 2)) + 1;
+  let randomRow = Math.floor(Math.random() * (heightInBlocks - 2)) + 1;
+  this.position = new Block(randomCol, randomRow);
+};
+
+let apple = new Apple();
+// apple.draw();
 
 addEventListener("keydown", function (event) {
   let newDirection = directions[event.keyCode];
@@ -175,10 +192,10 @@ const snake = new Snake();
 // snake.draw();
 
 let intervalId = setInterval(function () {
-    ctx.clearRect(0, 0, width, height);
-    drawScore();
-    snake.move();
-    snake.draw();
-    // apple.draw();
-    drawBorder();
-  }, 100);
+  ctx.clearRect(0, 0, width, height);
+  drawScore();
+  snake.move();
+  snake.draw();
+  apple.draw();
+  drawBorder();
+}, 100);
