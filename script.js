@@ -20,4 +20,54 @@ let drawBorder = function () {
   ctx.fillRect(0, 0, blockSize, height);
   ctx.fillRect(width - blockSize, 0, blockSize, height);
 };
+
 drawBorder();
+
+let drawScore = function () {
+  ctx.font = "20px Courier";
+  ctx.fillStyle = "Black";
+  ctx.textAlign = "left";
+  ctx.textBaseline = "top";
+  ctx.fillText("Рахунок: " + score, blockSize, blockSize);
+};
+
+drawScore();
+
+let gameOver = function () {
+  clearInterval(intervalId);
+  ctx.font = "60px Courier";
+  ctx.fillStyle = "Black";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText("Кінець гри", width / 2, height / 2);
+};
+
+//gameOver();
+
+// Рисуем окружность
+let circle = function (x, y, radius, fillCircle) {
+  ctx.beginPath();
+  ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+  if (fillCircle) {
+    ctx.fill();
+  } else {
+    ctx.stroke();
+  }
+};
+
+//circle(200, 200, 10, true);
+
+let Block = function (col, row) {
+  this.col = col;
+  this.row = row;
+};
+
+Block.prototype.drawSquare = function (color) {
+  let x = this.col * blockSize;
+  let y = this.row * blockSize;
+  ctx.fillStyle = color;
+  ctx.fillRect(x, y, blockSize, blockSize);
+};
+
+let sampleBlock = new Block(20, 20);
+sampleBlock.drawSquare("blue"); 
