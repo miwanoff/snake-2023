@@ -133,6 +133,7 @@ Snake.prototype.move = function () {
     return;
   }
   this.segments.unshift(newHead);
+  this.segments.pop();
   //   if (newHead.equal(apple.position)) {
   //     score++;
   //     apple.move();
