@@ -19,6 +19,8 @@ let directions = {
   40: "down",
 };
 
+const colors = ["Red", "Orange", "Yellow", "Green", "Blue", "Purple"];
+
 // Функция для рисования рамки
 let drawBorder = function () {
   ctx.fillStyle = "Gray";
@@ -91,6 +93,7 @@ let Snake = function () {
   this.segments = [new Block(7, 5), new Block(6, 5), new Block(5, 5)];
   this.direction = "right";
   this.nextDirection = "right";
+  this.color =  "blue";
 };
 
 Snake.prototype.draw = function () {
@@ -157,6 +160,7 @@ Snake.prototype.setDirection = function (newDirection) {
 
 let Apple = function () {
   this.position = new Block(20, 20);
+  this.color =  "LimeGreen";
 };
 
 Apple.prototype.draw = function () {
